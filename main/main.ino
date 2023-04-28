@@ -6,11 +6,12 @@
 #define servo_motor 3
 #define red_led 7
 #define green_led 12
-#define yellow_led 13
+#define blue_led 13
 #define waiting_interval 10000
 #define device_frequency 60000
 
 Servo myServo;
+
 
 
 
@@ -41,7 +42,8 @@ void setup() {
     pinMode(ir_sensor,INPUT);
     pinMode(buzzer,OUTPUT);
     pinMode(red_led,OUTPUT);
-
+    pinMode(blue_led,OUTPUT);
+    pinMode(green_led,OUTPUT);
 
     myServo.attach(servo_motor);
     Serial.begin(9600);
@@ -84,7 +86,7 @@ void serve_food(){
 
 
 bool is_waiting_time_finished(int starting_time){
-    if(milis()-starting_time>waiting_interval) return true;
+    if(millis()-starting_time>waiting_interval) return true;
     else return false;
 
 }
@@ -93,7 +95,7 @@ bool is_waiting_time_finished(int starting_time){
 void serve_food_state(){
     digitalWrite(green_led,HIGH);
     digitalWrite(red_led,LOW);
-    digitalWrite(yellow_led,LOW);
+    digitalWrite(blue_led,LOW);
 
 }
 
@@ -101,14 +103,14 @@ void wait_for_cat_state(){
 
     digitalWrite(green_led,LOW);
     digitalWrite(red_led,LOW);
-    digitalWrite(yellow_led,HIGH);
+    digitalWrite(blue_led,HIGH);
 }
 
 void device_down_state(){
 
     digitalWrite(green_led,LOW);
     digitalWrite(red_led,HIGH);
-    digitalWrite(yellow_led,LOW);
+    digitalWrite(blue_led,LOW);
 }
 
 bool is_ir_sensor_detect(){
