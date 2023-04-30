@@ -46,6 +46,7 @@ void setup() {
     pinMode(green_led,OUTPUT);
 
     myServo.attach(servo_motor);
+    myServo.write(0);
     Serial.begin(9600);
 }
 
@@ -85,7 +86,7 @@ void serve_food(){
 
 
 
-bool is_waiting_time_finished(int starting_time){
+bool is_waiting_time_finished(unsigned long starting_time){
     if(millis()-starting_time>waiting_interval) return true;
     else return false;
 
@@ -142,7 +143,7 @@ void close_gate(){
 
 
 void open_gate(){
-  while(gate<80){
+  while(gate<90){
     myServo.write(gate);
     gate++;
     delay(20);
