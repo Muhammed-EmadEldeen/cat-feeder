@@ -2,13 +2,13 @@
 
 
 #define ir_sensor A0
-#define buzzer 4
-#define servo_motor 3
-#define red_led 7
-#define green_led 12
-#define blue_led 13
+#define buzzer 8
+#define servo_motor 6
+#define red_led 36
+#define green_led 38
+#define blue_led 40
 #define waiting_interval 10000
-#define device_frequency 60000
+#define device_frequency 10000
 
 Servo myServo;
 
@@ -53,6 +53,7 @@ void setup() {
 
 
 void loop() {
+    
     current_time=millis();
     food_served=false;
   	buzzer_sound();
@@ -115,7 +116,7 @@ void device_down_state(){
 }
 
 bool is_ir_sensor_detect(){
-    if(!digitalRead(ir_sensor)) return true;
+    if(digitalRead(ir_sensor)) return true;
     else return false;
 }
 
@@ -143,7 +144,7 @@ void close_gate(){
 
 
 void open_gate(){
-  while(gate<90){
+  while(gate<80){
     myServo.write(gate);
     gate++;
     delay(20);
